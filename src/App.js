@@ -7,6 +7,7 @@ class App extends Component {
     super();
 
     this.state = {
+      name: { firstName: 'Wiz', lastName: 'Khalifa' },
       affiliation: 'Taylor Gang',
     };
   }
@@ -16,12 +17,25 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>{this.state.affiliation}</p>
+          <p>
+            {this.state.name.firstName} {this.state.name.lastName} is apart of{' '}
+            {this.state.affiliation}
+          </p>
           <button
             onClick={() => {
-              this.setState({ affiliation: 'Glory Boys' });
-              // this.state.affiliation = 'Glory Boys';
-              // console.log(this.state);
+              // Shallow merge with current state object
+              this.setState(
+                () => {
+                  return {
+                    name: { firstName: 'Chief', lastName: 'Keef' },
+                    affiliation: 'Glory Boys',
+                  };
+                },
+                // Runs only after state is fully updated
+                () => {
+                  console.log(this.state);
+                }
+              );
             }}
           >
             Change Affiliation

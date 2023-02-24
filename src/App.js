@@ -7,40 +7,29 @@ class App extends Component {
     super();
 
     this.state = {
-      name: { firstName: 'Wiz', lastName: 'Khalifa' },
-      affiliation: 'Taylor Gang',
+      monsters: [
+        {
+          name: 'Linda',
+        },
+        {
+          name: 'Frank',
+        },
+        {
+          name: 'Jacky',
+        },
+        {
+          name: 'Stanley',
+        },
+      ],
     };
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            {this.state.name.firstName} {this.state.name.lastName} is apart of{' '}
-            {this.state.affiliation}
-          </p>
-          <button
-            onClick={() => {
-              // Shallow merge with current state object
-              this.setState(
-                () => {
-                  return {
-                    name: { firstName: 'Chief', lastName: 'Keef' },
-                    affiliation: 'Glory Boys',
-                  };
-                },
-                // Runs only after state is fully updated
-                () => {
-                  console.log(this.state);
-                }
-              );
-            }}
-          >
-            Change Affiliation
-          </button>
-        </header>
+        {this.state.monsters.map((monster) => {
+          return <h1>{monster.name}</h1>;
+        })}
       </div>
     );
   }
